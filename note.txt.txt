@@ -1,0 +1,89 @@
+Cshell_exeApp::InitInstance(){
+   1、
+   2、
+   
+   
+}
+/*无服务服务器的初始化函数*/
+kernelinterface::Init(
+HWND hRenderWnd, CWnd* pMainWnd,
+	const char*pExePath, const char*pConfig, const char*pDBConStr,
+	const char*pWebUrl, const char* pResPath /*= NULL*/){
+	1、执行路径
+	2、配置文件寻找
+	3、路径
+	4、资源路径
+	5、日志设置
+	  1）系统日志
+	  2）DLL输入日志
+	  3）混合文件系统日志
+	  4）本地转换日志
+	6.检查pMainWnd、RenderWnd出问题写到日志里
+	7.初始化线程池、引擎 kernel_interface::Init（）
+	  1）创建线程
+	  2）创建线程同步信号量
+	  3）设置引擎窗口
+	  4）从DeBug.ini获取输入DLL管理器的
+	  5）创建渲染系统
+	  6）场景管理八叉树深度基于配置
+	     1.创建场景管理器并初始化
+		 2.创建CEDA_Carmer
+		 3.创建并初始化CEDA_Framework
+		 4.FileTextureManager设置路径
+	  7）窗口背景色
+	  8）内存、显存大小最大、最小值
+	  9）FrameWork
+	    1.gpu资源
+		2.cpu资源
+	  10）设置字体管理
+	  11）按渲染系统配置信息设置gpu
+	  12）初始化模型加载器 InitModelLoader
+	    为模型注册sfs路径:
+	    1）获取资源计划 
+		  1.从数据读出计划ID与IP地址
+		  2.找出ping响应最快的作为IP地址的计划ID
+		2）根据计划ID作相应操作
+		   if(id==-1){
+		    1.骨架文件相关设置
+			2.注册模型sm3路径
+			3.注册模型mdl路劲
+		   }
+		   else{
+		     1.连接数据库
+			 .....
+		   }
+	  13）场景管理更新场景源
+	  14）用户输入管理
+	  15）创建Texture、Quad管理
+	8、加载插件
+	9、窗口刷新
+	10、与kernel传递数据库连接和framework指针
+}
+//连接应用服务器的初始化函数
+int CKernelInterface::Init(
+	HWND hRenderWnd, CWnd* pMainWnd, const char*pExePath,
+	const char*pConfig, const char*pUserName,
+	const char*pPassword, const char*pAppSrv,
+	const char*pSeatName, const char* pResPath /*= NULL*/){
+	1、软件注册检查
+	2、配置文件寻找
+	3、执行路径
+	4、远程资源路径
+	5、日志设置
+	  1）系统日志
+	  2）DLL输入日志
+	  3）混合文件系统日志
+	  4）本地转换日志
+	6.检查pMainWnd、RenderWnd出问题写到日志里
+	7、设置WEB工程名
+	8、加载kernel_service模块
+	9、加载网络通信模块
+	10、加载登录模块
+	11、登录模块
+	12、设置要不要加载简单库
+	13、设置席位
+	14、登录web
+	15、窗口是否显示
+	/*无服务服务器的初始化函数*/ 
+	return Init(hRenderWnd, pMainWnd, m_pExePath, m_pSysConfigPath, NULL, NULL, m_pResourcePath);
+}
